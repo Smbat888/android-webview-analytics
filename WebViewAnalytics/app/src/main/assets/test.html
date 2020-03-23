@@ -4,10 +4,8 @@
         <title>TestLib</title>
         <script type="text/javascript" src="TestLib.js"></script>
         <script type="text/javascript">
-                window.external =
-                {
-                    'Notify': function(testRequest) {  window.location.replace(testRequest);}
-                };
+                var testLib = new TestLib();
+
                 function sendCustomEvent() {
                     var eventPath = "/custom/path";
                     var eventDesc = "Custom Event";
@@ -15,7 +13,7 @@
                     var customData = {
                             customKey : "CustomValue"
                     };
-                   (new TestLib()).triggerCustomEvent(eventPath, eventDesc, eventType, customData);
+                   testLib.triggerCustomEvent(eventPath, eventDesc, eventType, customData);
                 }
 
                 function sendButtonClickEvent() {
@@ -25,8 +23,9 @@
                     var customData = {
                             customKey : "CustomValue"
                     };
-                   (new TestLib()).triggerButtonClickEvent(eventPath, eventDesc, eventType, customData);
+                   testLib.triggerButtonClickEvent(eventPath, eventDesc, eventType, customData);
                 }
+
                 function sendSearchEvent() {
                     var eventPath = "/MyApp/search";
                     var eventDesc = "MyApp Search Event";
@@ -36,21 +35,18 @@
                             searchPhrase: "searchPhrase",
                             searchResult: "searchResult"
                     };
-                   (new TestLib()).triggerSearchEvent(eventPath, eventDesc, eventType, customData);
+                   testLib.triggerSearchEvent(eventPath, eventDesc, eventType, customData);
                 }
 
             </script>
         <style type="text/css">
-                .wrap{
+                .container {
                     border:solid 1px #CCC;
                 }
-                .cl {
-                    clear: both;
-                }
-                .fl {
+                .title {
                     float: left;
                 }
-                .fr{
+                .action {
                     float: right;
                 }
                 ul, li {
@@ -65,33 +61,30 @@
                     width:100%;
                     overflow:hidden;
                 }
-                span,button{vertical-align:middle}
+                span,button { vertical-align:middle }
             </style>
     </head>
 
     <body>
-        <div class="wrap">
+        <div class="container">
             <ul>
                 <li>
-                    <span class="fl">Custom</span>
-                    <span class="fr">
+                    <span class="title">Custom</span>
+                    <span class="action">
                                     <button type="button" class="send" onclick="sendCustomEvent()">Send</button>
                                 </span>
-                    <div class="cl"></div>
                 </li>
                 <li>
-                    <span class="fl">Button click</span>
-                    <span class="fr">
+                    <span class="title">Button click</span>
+                    <span class="action">
                                     <button type="button" class="send" onclick="sendButtonClickEvent()">Send</button>
                                 </span>
-                    <div class="cl"></div>
                 </li>
                 <li>
-                    <span class="fl">Search</span>
-                    <span class="fr">
+                    <span class="title">Search</span>
+                    <span class="action">
                                     <button type="button" class="send" onclick="sendSearchEvent()">Send</button>
                                 </span>
-                    <div class="cl"></div>
                 </li>
             </ul>
         </div>

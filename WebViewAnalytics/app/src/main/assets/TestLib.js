@@ -15,29 +15,15 @@ function TestLib() {
 
 	function wrapFunction(funcName, args) {
 		var arr = new Array();
-		for ( var i = 0; i < args.length; i++) {
+		for (var i = 0; i < args.length; i++) {
 			arr[i] = args[i];
 		}
 
 		var data = (JSON && JSON.stringify) ? JSON.stringify([funcName, arr]) : stringify([funcName, arr]);
-        var TestRequest = "test://" + Math.random() + "?" + data;
         if(navigator.userAgent.match(/Android/i)) {
+            // test - it's an name of an object when we add javascriptInterface object from the android cpde
             test.sendJsEvent(data);
             return;
-        }
-        if (window.external && window.external.Notify) {
-            window.external.Notify(TestRequest);
-        }
-        else {
-            var TestGateway = document.createElement('iframe');
-            TestGateway.setAttribute('src', TestRequest);
-            TestGateway.setAttribute('style', 'display:none;');
-            TestGateway.setAttribute('frameborder', '0');
-            TestGateway.setAttribute('height', '0px');
-            TestGateway.setAttribute('width', '0px');
-            document.getElementsByTagName('body')[0].appendChild(TestGateway);
-            TestGateway.parentNode.removeChild(TestGateway);
-            TestGateway = null;
         }
     }
 

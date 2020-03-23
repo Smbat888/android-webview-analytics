@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>TestLib</title>
+        <script type="text/javascript" src="TestLib.js"></script>
+        <script type="text/javascript">
+                window.external =
+                {
+                    'Notify': function(testRequest) {  window.location.replace(testRequest);}
+                };
+                function sendCustomEvent() {
+                    var eventPath = "/custom/path";
+                    var eventDesc = "Custom Event";
+                    var eventType = "custom";
+                    var customData = {
+                            customKey : "CustomValue"
+                    };
+                   (new TestLib()).triggerCustomEvent(eventPath, eventDesc, eventType, customData);
+                }
+
+                function sendButtonClickEvent() {
+                    var eventPath = "/MyApp/button/click";
+                    var eventDesc = "MyApp Button Click Event";
+                    var eventType = "click";
+                    var customData = {
+                            customKey : "CustomValue"
+                    };
+                   (new TestLib()).triggerButtonClickEvent(eventPath, eventDesc, eventType, customData);
+                }
+                function sendSearchEvent() {
+                    var eventPath = "/MyApp/search";
+                    var eventDesc = "MyApp Search Event";
+                    var eventType = "search";
+                    var customData = {
+                            customKey : "CustomValue",
+                            searchPhrase: "searchPhrase",
+                            searchResult: "searchResult"
+                    };
+                   (new TestLib()).triggerSearchEvent(eventPath, eventDesc, eventType, customData);
+                }
+
+            </script>
+        <style type="text/css">
+                .wrap{
+                    border:solid 1px #CCC;
+                }
+                .cl {
+                    clear: both;
+                }
+                .fl {
+                    float: left;
+                }
+                .fr{
+                    float: right;
+                }
+                ul, li {
+                    padding: 0;
+                    margin:0;
+                }
+                li {
+                    background:#8167AD;
+                    display: block;
+                    margin-bottom: 10px;
+                    list-style-type: none;
+                    width:100%;
+                    overflow:hidden;
+                }
+                span,button{vertical-align:middle}
+            </style>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <ul>
+                <li>
+                    <span class="fl">Custom</span>
+                    <span class="fr">
+                                    <button type="button" class="send" onclick="sendCustomEvent()">Send</button>
+                                </span>
+                    <div class="cl"></div>
+                </li>
+                <li>
+                    <span class="fl">Button click</span>
+                    <span class="fr">
+                                    <button type="button" class="send" onclick="sendButtonClickEvent()">Send</button>
+                                </span>
+                    <div class="cl"></div>
+                </li>
+                <li>
+                    <span class="fl">Search</span>
+                    <span class="fr">
+                                    <button type="button" class="send" onclick="sendSearchEvent()">Send</button>
+                                </span>
+                    <div class="cl"></div>
+                </li>
+            </ul>
+        </div>
+    </body>
+
+</html>

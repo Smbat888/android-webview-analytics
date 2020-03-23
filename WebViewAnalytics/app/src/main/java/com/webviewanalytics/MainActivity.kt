@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val webView = web_view
         webView.settings.javaScriptEnabled = true
         webView.addJavascriptInterface(TestJavascriptInterface(this), "test")
         webView.loadUrl("file:///android_asset/test.html")

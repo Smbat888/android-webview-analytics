@@ -4,6 +4,10 @@
         <title>TestLib</title>
         <script type="text/javascript" src="TestLib.js"></script>
         <script type="text/javascript">
+                // this is the same for iOS
+                window.external = {
+                    'Notify': function(testRequest) {  window.location.replace(testRequest);}
+                };
                 var testLib = new TestLib();
 
                 function sendCustomEvent() {

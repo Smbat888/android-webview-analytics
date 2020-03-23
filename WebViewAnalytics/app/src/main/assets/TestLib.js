@@ -25,6 +25,20 @@ function TestLib() {
             test.sendJsEvent(data);
             return;
         }
+        // for iOS
+        if (window.external && window.external.Notify) {
+            window.external.Notify(TestRequest);
+        } else {
+            var TestGateway = document.createElement('iframe');
+            TestGateway.setAttribute('src', TestRequest);
+            TestGateway.setAttribute('style', 'display:none;');
+            TestGateway.setAttribute('frameborder', '0');
+            TestGateway.setAttribute('height', '0px');
+            TestGateway.setAttribute('width', '0px');
+            document.getElementsByTagName('body')[0].appendChild(TestGateway);
+            TestGateway.parentNode.removeChild(TestGateway);
+            TestGateway = null;
+        }
     }
 
 	function stringify(args) {
